@@ -10,8 +10,42 @@
 </head>
 
 <body>
-    <iframe style="width:100%; height:100%" src="https://epub-factory-cdn.mheducation.com/publish/sn_90c7f/21/1080mp4/OPS/s9ml/chapter13/ch13_reader_0.xhtml"></iframe>
-    <script></script>
+    <iframe style="width:100vw height:100vh" src="https://epub-factory-cdn.mheducation.com/publish/sn_90c7f/21/1080mp4/OPS/s9ml/chapter13/ch13_reader_0.xhtml"></iframe>
+    <div style="position: absolute; top: 10px; left: 10px;">
+        <button id="up-ch">Up Chapter</button>
+        <button id="down-ch">Down Chapter</button>
+        <button id="up-reader">Up Reader</button>
+        <button id="down-reader">Down Reader</button>
+        <button>If it doesnt work, change the reader or chapter idk.</button>
+        <button id="counter">Ch: 13; Reader: 0</button>
+    </div>
+    <script>
+        let ch = 13
+        let reader = 0
+
+        function change(){
+            document.getElementById("counter").textContent = `Ch: ${ch}; Reader: ${reader}`
+            document.querySelector("iframe").src = `https://epub-factory-cdn.mheducation.com/publish/sn_90c7f/21/1080mp4/OPS/s9ml/chapter${ch}/ch${ch}_reader_${reader}.xhtml`
+        }
+
+        document.getElementById("up-ch").addEventListener("click", ()=>{
+            ch++;
+            change()
+        })
+        document.getElementById("down-ch").addEventListener("click", ()=>{
+            ch--;
+            change()
+        })
+
+        document.getElementById("up-reader").addEventListener("click", ()=>{
+            reader++;
+            change()
+        })
+        document.getElementById("down-reader").addEventListener("click", ()=>{
+            reader--;
+            change()
+        })
+    </script>
 </body>
 
 </html>
