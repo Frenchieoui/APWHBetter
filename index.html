@@ -22,67 +22,29 @@
         let ch = 13
         let reader = 0
 
-        function setFrame(url){
-            fetch(url,{method:"HEAD"}).then(res=>{
-                if(res.ok){
-                    document.querySelector("iframe").src=url
-                    document.getElementById("counter").textContent=`Ch: ${ch}; Reader: ${reader}`
-                }
-            })
-        }
-
         function change(){
-            let url=`https://epub-factory-cdn.mheducation.com/publish/sn_90c7f/21/1080mp4/OPS/s9ml/chapter${ch}/ch${ch}_reader_${reader}.xhtml`
-            setFrame(url)
+            document.getElementById("counter").textContent = `Ch: ${ch}; Reader: ${reader}`
+            document.querySelector("iframe").src = `https://epub-factory-cdn.mheducation.com/publish/sn_90c7f/21/1080mp4/OPS/s9ml/chapter${ch}/ch${ch}_reader_${reader}.xhtml`
         }
 
-        document.getElementById("up-ch").addEventListener("click",()=>{
-            let prev=ch
-            ch++
-            let url=`https://epub-factory-cdn.mheducation.com/publish/sn_90c7f/21/1080mp4/OPS/s9ml/chapter${ch}/ch${ch}_reader_${reader}.xhtml`
-            fetch(url,{method:"HEAD"}).then(res=>{
-                if(res.ok){
-                    document.querySelector("iframe").src=url
-                    document.getElementById("counter").textContent=`Ch: ${ch}; Reader: ${reader}`
-                }else ch=prev
-            })
+        document.getElementById("up-ch").addEventListener("click", ()=>{
+            ch++;
+            change()
+        })
+        document.getElementById("down-ch").addEventListener("click", ()=>{
+            ch--;
+            change()
         })
 
-        document.getElementById("down-ch").addEventListener("click",()=>{
-            let prev=ch
-            ch--
-            let url=`https://epub-factory-cdn.mheducation.com/publish/sn_90c7f/21/1080mp4/OPS/s9ml/chapter${ch}/ch${ch}_reader_${reader}.xhtml`
-            fetch(url,{method:"HEAD"}).then(res=>{
-                if(res.ok){
-                    document.querySelector("iframe").src=url
-                    document.getElementById("counter").textContent=`Ch: ${ch}; Reader: ${reader}`
-                }else ch=prev
-            })
+        document.getElementById("up-reader").addEventListener("click", ()=>{
+            reader++;
+            change()
         })
-
-        document.getElementById("up-reader").addEventListener("click",()=>{
-            let prev=reader
-            reader++
-            let url=`https://epub-factory-cdn.mheducation.com/publish/sn_90c7f/21/1080mp4/OPS/s9ml/chapter${ch}/ch${ch}_reader_${reader}.xhtml`
-            fetch(url,{method:"HEAD"}).then(res=>{
-                if(res.ok){
-                    document.querySelector("iframe").src=url
-                    document.getElementById("counter").textContent=`Ch: ${ch}; Reader: ${reader}`
-                }else reader=prev
-            })
-        })
-
-        document.getElementById("down-reader").addEventListener("click",()=>{
-            let prev=reader
-            reader--
-            let url=`https://epub-factory-cdn.mheducation.com/publish/sn_90c7f/21/1080mp4/OPS/s9ml/chapter${ch}/ch${ch}_reader_${reader}.xhtml`
-            fetch(url,{method:"HEAD"}).then(res=>{
-                if(res.ok){
-                    document.querySelector("iframe").src=url
-                    document.getElementById("counter").textContent=`Ch: ${ch}; Reader: ${reader}`
-                }else reader=prev
-            })
+        document.getElementById("down-reader").addEventListener("click", ()=>{
+            reader--;
+            change()
         })
     </script>
 </body>
+
 </html>
